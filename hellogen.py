@@ -7,10 +7,10 @@ GA_TARGET = "Hello world!"
 GA_CHARS = string.letters + string.digits + string.punctuation + string.whitespace
 
 def randstr():
-    return "".join([random.choice(GA_CHARS) for i in xrange(len(GA_TARGET))])
+    return "".join([random.choice(GA_CHARS) for i in range(len(GA_TARGET))])
 
 def fitness(value):
-    return sum([abs(ord(value[j]) - ord(GA_TARGET[j])) for j in xrange(len(GA_TARGET))])
+    return sum([abs(ord(value[j]) - ord(GA_TARGET[j])) for j in range(len(GA_TARGET))])
 
 def mate(population, buffer):
     esize = int(GA_POPSIZE * GA_ELITRATE)
@@ -25,8 +25,8 @@ def mate(population, buffer):
             pos = random.randint(0, len(GA_TARGET)-1)
             buffer[i] = buffer[i][:pos] + random.choice(GA_CHARS) + buffer[i][pos+1:]
 
-population = [randstr() for i in xrange(GA_POPSIZE)]
-buffer = [randstr() for i in xrange(GA_POPSIZE)]
+population = [randstr() for i in range(GA_POPSIZE)]
+buffer = [randstr() for i in range(GA_POPSIZE)]
 while True:
     population = sorted(population, key=lambda c: fitness(c))
     print "[%03d]\tBest (%04d)\t%s" % (i, fitness(population[0]), population[0])
